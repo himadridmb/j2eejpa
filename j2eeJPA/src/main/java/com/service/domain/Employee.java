@@ -60,5 +60,12 @@ public class Employee implements java.io.Serializable {
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
+
+	@Override
+	public String toString() {
+		return "Employee [Id=" + Id + ", firstName=" + firstName + ", surname="
+				+ surname + ", salary=" + salary + "]";
+	}
+	
 	
 }
