@@ -36,13 +36,15 @@ public class JpaTest {
     // Do we have entries?
     boolean createNewEntries = (q.getResultList().size() == 0);
 
-    Company company = new Company();
-   
-    company.setName("UNOapp");
-        
+    
     // No, so lets create new entries
     if (createNewEntries) {
-      assertTrue(q.getResultList().size() == 0);
+    	Company company = new Company();
+    	   
+        company.setName("UNOapp");
+        em.persist(company);   
+        
+       assertTrue(q.getResultList().size() == 0);
  
       for (int i = 0; i < 40; i++) {
     	  Employee employee = new Employee();
@@ -51,7 +53,6 @@ public class JpaTest {
           employee.setSalary(10000+i);
           employee.setCompany(company);
           em.persist(employee);
-        
       }
     }
 
@@ -91,7 +92,7 @@ public class JpaTest {
 	  
 	  for (Employee e : emps)
 	  {
-	      System.out.println(e);
+	      System.out.println(e.getFirstName()+" ==> "+e.getCompany().getName());
 	  }
 	  em.close();
   }
