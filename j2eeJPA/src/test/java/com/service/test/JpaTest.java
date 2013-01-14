@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.service.domain.Company;
 import com.service.domain.Employee;
 
 public class JpaTest {
@@ -35,6 +36,10 @@ public class JpaTest {
     // Do we have entries?
     boolean createNewEntries = (q.getResultList().size() == 0);
 
+    Company company = new Company();
+   
+    company.setName("UNOapp");
+        
     // No, so lets create new entries
     if (createNewEntries) {
       assertTrue(q.getResultList().size() == 0);
@@ -44,7 +49,7 @@ public class JpaTest {
           employee.setFirstName("UNOapp"+i);
           employee.setSurname("WEBtool"+i);
           employee.setSalary(10000+i);
-       
+          employee.setCompany(company);
           em.persist(employee);
         
       }
@@ -86,7 +91,7 @@ public class JpaTest {
 	  
 	  for (Employee e : emps)
 	  {
-	      System.out.println("Found employee: " + e);
+	      System.out.println(e);
 	  }
 	  em.close();
   }

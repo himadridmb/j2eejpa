@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Employee implements java.io.Serializable {
@@ -15,6 +17,10 @@ public class Employee implements java.io.Serializable {
 	private String firstName;
 	private String surname;
 	private int salary;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "CID_FK",nullable=false,referencedColumnName="CID")
+	private Company company;
 	
 	public Employee()
 	{
@@ -59,6 +65,14 @@ public class Employee implements java.io.Serializable {
 
 	public void setSalary(int salary) {
 		this.salary = salary;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	@Override
